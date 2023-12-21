@@ -1,4 +1,4 @@
-const dataService = require("../services/data.service")
+const dataService = require('../services/data.service')
 
 const modelName = 'characters'
 
@@ -8,7 +8,7 @@ const listCharacters = async (req, res) => {
 }
 
 const createCharacter = async (req, res) => {
-  const body = req.body;
+  const body = req.body
 
   const create = await dataService.insertData(modelName, body)
   res.status(201).json(create)
@@ -18,13 +18,28 @@ const listOneCharacter = async (req, res) => {
   const { id } = req.params
 
   const item = await dataService.getItemById(modelName, id)
-  return item
+  res.status(200).json(item)
 }
 
+const deleteCharacter = async (req, res) => {
+  const { id } = req.params
 
+  const remove = await dataService.deleteItemById(modelName, id)
+  res.status(200).send(remove)
+}
+
+const updateCharacter = async (req, res) => {
+  const { id } = req.params
+  const body = req.body
+
+  const update = await dataService.updateItem(modelName, id, body)
+  res.status(200).json(update)
+}
 
 module.exports = {
   listCharacters,
   createCharacter,
-  listOneCharacter
+  listOneCharacter,
+  deleteCharacter,
+  updateCharacter
 }
