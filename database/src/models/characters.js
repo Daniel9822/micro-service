@@ -19,7 +19,6 @@ const characterSchema = new Schema(
   }
 )
 
-
 characterSchema.statics.list = async () => {
   const data = await character.find({})
   return data
@@ -33,7 +32,18 @@ characterSchema.statics.insert = async (data) => {
 characterSchema.statics.getItemById = async (id) => {
   const item = await character.findById(id)
   return item
-  
+}
+
+characterSchema.statics.deleteItemById = async (id) => {
+  const deleteItem = await character.deleteOne({ _id: id })
+  return deleteItem
+}
+
+characterSchema.statics.updateItem = async (id, body) => {
+  const update = await character.findByIdAndUpdate(id, body, {
+    new: true
+  })
+  return update
 }
 
 const character = model('character', characterSchema)
