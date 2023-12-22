@@ -4,7 +4,7 @@ const {
   updateFilm,
   createFilm,
   deleteFilm
-} = require('../controllers/films.ctr')
+} = require('../controllers')
 
 const router = require('express').Router()
 
