@@ -1,6 +1,12 @@
 const mongoose = require('mongoose')
 
-const MONGO_URI = process.env.MONGO_URI
+let MONGO_URI = process.env.MONGO_URI
+
+const NODE_ENV = process.env.NODE_ENV
+
+if(NODE_ENV !== 'development') {
+  MONGO_URI = process.env.MONGO_TEST
+}
 
 async function connect() {
   try {
