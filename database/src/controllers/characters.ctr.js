@@ -35,6 +35,7 @@ const updateCharacter = async (req, res) => {
   const body = req.body
 
   const update = await dataService.updateItem(modelName, id, body)
+  
   response(res, 200, update)
 }
 
