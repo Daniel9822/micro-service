@@ -1,4 +1,11 @@
 const { model, Schema } = require('mongoose')
+const {
+  insertItem,
+  listItems,
+  listItem,
+  deleteItem,
+  updateItem
+} = require('./staticsMethods')
 
 const characterSchema = new Schema(
   {
@@ -19,32 +26,19 @@ const characterSchema = new Schema(
   }
 )
 
-characterSchema.statics.list = async () => {
-  const data = await character.find({})
-  return data
-}
+characterSchema.statics.list = async () => await listItems(character)
 
-characterSchema.statics.insert = async (data) => {
-  const create = await character.create(data)
-  return create
-}
+characterSchema.statics.insert = async (data) =>
+  await insertItem(character, data)
+  
+characterSchema.statics.getItemById = async (id) =>
+  await listItem(character, id)
 
-characterSchema.statics.getItemById = async (id) => {
-  const item = await character.findById(id)
-  return item
-}
+characterSchema.statics.deleteItemById = async (id) =>
+  await deleteItem(character, id)
 
-characterSchema.statics.deleteItemById = async (id) => {
-  const deleteItem = await character.deleteOne({ _id: id })
-  return deleteItem
-}
-
-characterSchema.statics.updateItem = async (id, body) => {
-  const update = await character.findByIdAndUpdate(id, body, {
-    new: true
-  })
-  return update
-}
+characterSchema.statics.updateItem = async (id, body) =>
+  updateItem(character, id, body)
 
 const character = model('character', characterSchema)
 module.exports = character
