@@ -1,4 +1,4 @@
-const { listCharacters, createCharacter, listOneCharacter, deleteCharacter, updateCharacter } = require('../controllers/characters.ctr')
+const { listCharacters, createCharacter, listOneCharacter, deleteCharacter, updateCharacter } = require('../controllers')
 
 const router = require('express').Router()
 
