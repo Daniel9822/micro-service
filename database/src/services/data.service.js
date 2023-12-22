@@ -1,4 +1,5 @@
 const PATH = `../models`
+
 class DataService {
 
   async listData(model){
