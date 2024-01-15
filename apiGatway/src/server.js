@@ -8,19 +8,19 @@ const server = express()
 server.use(morgan('dev'))
 
 server.use('/characters', createProxyMiddleware({
-  target: 'http://localhost:3000/characters',
+  target: 'http://localhost:3000',
   changeOrigin: true,
   onProxyReq: proxyReq
 }))
 
 server.use('films', createProxyMiddleware({
-  target: 'http://localhost:3001/films',
+  target: 'http://localhost:3001',
   changeOrigin: true,
   onProxyReq: proxyReq
 }))
 
 server.use('planets', createProxyMiddleware({
-  target: 'http://localhost:3002/planets',
+  target: 'http://localhost:3002',
   changeOrigin: true,
   onProxyReq: proxyReq
 }))
