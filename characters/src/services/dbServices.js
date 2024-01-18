@@ -12,6 +12,15 @@ class DbServices {
     const { data } = await response.json()
     return data
   }
+
+  async getCharacterById(id) {
+    const response = await fetch(`${DB_URI}/characters/${id}`, {
+      method: 'GET'
+    })
+
+    const data = await response.json()
+    return { data } = data
+  }
 }
 
 module.exports = new DbServices
