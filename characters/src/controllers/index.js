@@ -1,8 +1,10 @@
 const catchError = require('../utils/catchError')
-const { getAllCharacters } = require('./characters.ctr')
+const { getAllCharacters, getCharacter, updateCharacter } = require('./characters.ctr')
 
 
 
 module.exports = {
-  getAllCharacters: catchError(getAllCharacters)
+  getAllCharacters: catchError(getAllCharacters),
+  getCharacter: catchError(getCharacter),
+  updateCharacter: catchError(updateCharacter)
 }
