@@ -1,10 +1,9 @@
 const { DB_URI } = require('../utils/envs')
 
-console.log(DB_URI);
-class DbServices {
+class DBServices {
   constructor() {}
 
-  async allCahracter() {
+  async allCharacter() {
     const response = await fetch(`${DB_URI}/characters`, {
       method: 'GET'
     })
@@ -18,9 +17,22 @@ class DbServices {
       method: 'GET'
     })
 
-    const data = await response.json()
-    return { data } = data
+    const { data } = await response.json()
+    return data
+  }
+
+  async updateCharacter(id, character) {
+    const response = await fetch(`${DB_URI}/characters/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(character)
+    })
+
+    const { data } = await response.json()
+    return data
   }
 }
 
-module.exports = new DbServices
+module.exports = new DBServices()
