@@ -1,7 +1,7 @@
 class HandleError extends Error {
   constructor(message, statusCode) {
     super(message)
-    this.satusCode = statusCode
+    this.statusCode = statusCode
   }
 }
 
