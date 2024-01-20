@@ -1,3 +1,4 @@
+const { response } = require('../server')
 const { DB_URI } = require('../utils/envs')
 
 class DBServices {
@@ -28,6 +29,28 @@ class DBServices {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(character)
+    })
+
+    const { data } = await response.json()
+    return data
+  }
+
+  async createCharacter(character) {
+    const response = await fetch(`${DB_URI}/characters`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(character)
+    })
+
+    const { data } = await response.json()
+    return data
+  }
+
+  async deleteCharacter(id) {
+    const response = await fetch(`${DB_URI}/characters/${id}`, {
+      method: 'DELETE'
     })
 
     const { data } = await response.json()
