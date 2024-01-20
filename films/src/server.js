@@ -1,7 +1,7 @@
 const express = require('express')
+const routes = require('../src/routes/films')
 const morgan = require('morgan')
 const HandleError = require('./utils/handleError')
-const routes = require('../src/routes/films')
 
 const server = express()
 
