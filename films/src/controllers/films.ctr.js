@@ -8,7 +8,7 @@ const getAllFilms = async (req, res) => {
 
 const createFilm = async (req, res) => {
   response(res, 201, {
-    hello: 'hello word'
+    hello: 'hello word '
   })
 }
 
