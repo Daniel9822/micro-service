@@ -21,8 +21,8 @@ const getFilmById = (req, res) => {
   const { id } = req.params
 }
 
-const deleteFilm = () => {
-
+const deleteFilm = (req, res) => {
+  
 }
 
 module.exports = {
