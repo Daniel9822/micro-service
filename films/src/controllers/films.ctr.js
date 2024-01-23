@@ -12,7 +12,23 @@ const createFilm = async (req, res) => {
   })
 }
 
+const updateFilms = (req, res) => {
+  const { id } = req.params;
+
+}
+
+const getFilmById = (req, res) => {
+  const { id } = req.params
+}
+
+const deleteFilm = () => {
+
+}
+
 module.exports = {
   createFilm,
-  getAllFilms
+  getAllFilms,
+  getFilmById,
+  updateFilms,
+  deleteFilm
 }
