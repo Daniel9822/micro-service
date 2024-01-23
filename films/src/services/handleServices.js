@@ -1,19 +1,22 @@
-const { DB_URI: PATH } = require('../utils/envs')
+const { DB_URL } = require('../utils/envs')
 
 class DbService {
   constructor() {}
 
   async listFilms() {
-    const response = await fetch(PATH, {
-      method: 'GET'
+    const response = await fetch(DB_URL, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
     })
 
-    const { data } = await response.json()
+    const data = await response.json()
     return data
   }
 
   async listOnFilm(id) {
-    const response = await fetch(`${PATH}/${id}`, {
+    const response = await fetch(`${DB_URL}/${id}`, {
       method: 'GET'
     })
 
@@ -22,7 +25,7 @@ class DbService {
   }
 
   async updateFilm(id, film) {
-    const response = await fetch(`${PATH}/${id}`, {
+    const response = await fetch(`${DB_URL}/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -34,8 +37,21 @@ class DbService {
     return data
   }
 
+  async createFilm(film) {
+    const response = await fetch(DB_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(film)
+    })
+
+    const { data } = await response.json()
+    return data
+  }
+
   async deleteFilm(id) {
-    const response = await fetch(`${PATH}/${id}`, {
+    const response = await fetch(`${DB_URL}/${id}`, {
       method: 'DELETE'
     })
 
