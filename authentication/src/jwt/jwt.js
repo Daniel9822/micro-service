@@ -1,4 +1,4 @@
-const { sign, decode } = require('jsonwebtoken')
+const { sign, decode, verify } = require('jsonwebtoken')
 const { secret } = require('../utils/envs')
 
 const generateToken = (user) => {
@@ -15,7 +15,7 @@ const generateToken = (user) => {
 
 const decodeToken = (token) => {
   try {
-    const data = decode(token)
+    const data = verify(token, secret)
     return data
 
   } catch (error) {
