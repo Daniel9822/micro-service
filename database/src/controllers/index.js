@@ -14,6 +14,8 @@ const {
   createFilm
 } = require('./films.ctr')
 
+const { validateUser, createUser } = require('./auth.ctr')
+
 module.exports = {
   listCharacters: catchError(listCharacters),
   listOneCharacter: catchError(listOneCharacter),
@@ -25,5 +27,8 @@ module.exports = {
   listFilm: catchError(listFilm),
   updateFilm: catchError(updateFilm),
   deleteFilm: catchError(deleteFilm),
-  createFilm: catchError(createFilm)
+  createFilm: catchError(createFilm),
+  //Auth
+  validateUser: catchError(validateUser),
+  createUser: catchError(createUser)
 }
