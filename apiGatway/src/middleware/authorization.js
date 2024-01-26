@@ -1,3 +1,5 @@
+const { authorization_url } = require('../utils/envs')
+
 const authorization = async (req, res, next) => {
   const auth = req.headers.authorization
 
@@ -10,7 +12,7 @@ const authorization = async (req, res, next) => {
 
   const token = auth.split(' ').pop()
 
-  const verifyToken = await fetch('http://localhost:5000/auth/authorization', {
+  const verifyToken = await fetch(authorization_url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
