@@ -1,4 +1,4 @@
-const HandleError = require('../../../authentication/src/utils/handleError')
+const HandleError = require('../../helpers/errorHandler')
 const AuthService = require('../services/auth.service')
 const response = require('../../helpers/response')
 
@@ -18,6 +18,7 @@ const createUser = async (req, res) => {
 
   const user = await AuthService.createUser({ email, password })
 
+  console.log(user);
   response(res, 201, user)
 }
 
