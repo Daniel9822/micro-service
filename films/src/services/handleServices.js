@@ -1,5 +1,6 @@
 const { DB_URL } = require('../utils/envs')
 
+console.log(DB_URL);
 class DbService {
   constructor() {}
 
