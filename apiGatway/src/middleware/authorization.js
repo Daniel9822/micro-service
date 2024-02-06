@@ -10,25 +10,29 @@ const authorization = async (req, res, next) => {
     })
   }
 
-  const token = auth.split(' ').pop()
+  const token = auth?.split(' ').pop()
 
-  const verifyToken = await fetch(authorization_url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ token })
-  })
-
-  const { data } = await verifyToken.json()
-
-  if (data?.authorization) {
-    next()
-  } else {
-    res.status(401).send({
-      error: true,
-      message: data?.message
+  try {
+    const verifyToken = await fetch(authorization_url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ token })
     })
+
+    const { data } = await verifyToken.json()
+
+    if (data?.authorization) {
+      next()
+    } else {
+      res.status(401).send({
+        error: true,
+        message: data?.message
+      })
+    }
+  } catch (error) {
+    console.log(error);
   }
 }
 
