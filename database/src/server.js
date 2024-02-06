@@ -1,6 +1,6 @@
 const express = require('express')
 const morgan = require('morgan')
-const HandleError = require('../../characters/src/utils/handleError')
+const HandleError = require('../helpers/errorHandler')
 
 const server = express()
 server.use(morgan('dev'))
