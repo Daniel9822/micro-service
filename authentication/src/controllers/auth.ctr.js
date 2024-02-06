@@ -10,7 +10,7 @@ const registerUser = async (req, res) => {
 
   const hash = await hashPassword(body.password)
 
-  const { data } = await DbServices.register({
+  const data = await DbServices.register({
     email: body.email,
     password: hash
   })
