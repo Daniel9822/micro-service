@@ -1,6 +1,6 @@
-const { response } = require('../server')
 const { DB_URI } = require('../utils/envs')
 
+console.log(DB_URI);
 class DBServices {
   constructor() {}
 
