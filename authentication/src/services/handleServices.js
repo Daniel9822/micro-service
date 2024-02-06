@@ -1,5 +1,6 @@
 const { DB_URL } = require('../utils/envs')
 
+console.log(DB_URL);
 class DbServices {
   constructor() {}
 
@@ -9,6 +10,7 @@ class DbServices {
     })
 
     const { data } = await response.json()
+    console.log(data);
     return data
   }
   
@@ -21,7 +23,7 @@ class DbServices {
       body: JSON.stringify(user)
     })
 
-    const { data } = response.json()
+    const { data } = await response.json()
     return data
   }
 }
