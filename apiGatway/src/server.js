@@ -3,15 +3,21 @@ const morgan = require('morgan')
 const { createProxyMiddleware } = require('http-proxy-middleware')
 const proxyReq = require('./utils/onRequest')
 const authorization = require('./middleware/authorization')
+const {
+  authorization: auth,
+  characters,
+  films,
+  planets
+} = require('../src/utils/envs')
 
 const server = express()
 
 server.use(morgan('dev'))
 
 server.use(
-  '/auth/:action(login | register)?', 
+  '/auth/:action(login | register)?',
   createProxyMiddleware({
-    target: 'http://localhost:5000',
+    target: auth,
     changeOrigin: true,
     onProxyReq: proxyReq
   })
@@ -20,7 +26,7 @@ server.use(
 server.use(
   '/characters',
   createProxyMiddleware({
-    target: 'http://localhost:3000',
+    target: characters,
     changeOrigin: true,
     onProxyReq: proxyReq
   })
@@ -30,7 +36,7 @@ server.use(
   '/films',
   authorization,
   createProxyMiddleware({
-    target: 'http://localhost:3001',
+    target: films,
     changeOrigin: true,
     onProxyReq: proxyReq
   })
@@ -39,7 +45,7 @@ server.use(
 server.use(
   '/planets',
   createProxyMiddleware({
-    target: 'http://localhost:3002',
+    target: planets,
     changeOrigin: true,
     onProxyReq: proxyReq
   })
