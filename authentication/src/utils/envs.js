@@ -6,5 +6,5 @@ module.exports = {
   secret: process.env.SECRET,
   PORT: process.env.PORT,
   DB_URL:
-    NODE_ENV === 'development' ? process.env.DB_URL_LOCAL : process.env.DB_URL
+    NODE_ENV.trim() === 'development' ? process.env.DB_URL_LOCAL : process.env.DB_URL
 }
