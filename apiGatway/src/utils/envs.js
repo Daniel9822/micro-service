@@ -10,11 +10,9 @@ const services = {
   films: process.env.FILMS
 }
 
-console.log(services);
-
-if (NODE_ENV === "development") {
+if (NODE_ENV.trim() === 'development') {
   for (const key in services) {
-    services[key] = services[key].replace(/\/\/[^:]+:/, "//localhost:");
+    services[key] = services[key].replace(/\/\/[^:]+:/, '//localhost:')
   }
 }
 
